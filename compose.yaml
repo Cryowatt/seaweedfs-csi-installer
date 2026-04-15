@@ -1,0 +1,14 @@
+services:
+  installer:
+    image: ${IMAGE_NAME:-cryowatt/seaweedfs-csi-plugin-docker-installer}:${PLUGIN_VERSION:-latest}
+    build:
+      context: .
+      target: plugin-installer
+      platforms:
+        - linux/amd64
+        - linux/arm/v7
+        - linux/arm64
+    environment:
+      PLUGIN_VERSION: ${PLUGIN_VERSION:-latest}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
